@@ -40,7 +40,7 @@ const calcDiameterInFeet = function(originalDiameter) {
 const calcKinimaticViscosity = function(viscosity, spgr) {
     // Returns in ft**2 per second
     let result = (0.00067197 * viscosity)/(62.37 * spgr);
-    return significantFigHelper(result, 7)
+    return significantFigHelper(result, 8)
 };
 
 const calcFlowArea = function(diameterInFeet) {

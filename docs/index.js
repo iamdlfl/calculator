@@ -74,7 +74,7 @@ const calcReynoldsNumber = function(diameterInFeet, velocity, kinimaticViscosity
 
 const calcEOverDiameter = function(diameterInFeet) {
     let result = ROUGHNESS/diameterInFeet;
-    return parseFloat(Number.parseFloat(result).toFixed(4))
+    return fixedPointHelper(result, 4);
 };
 
 const calcHeadLoss = function(frictionFactor, totalLength, velocity, diameterInFeet, verticalRise) {

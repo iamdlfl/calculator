@@ -1,0 +1,14 @@
+body {
+    box-sizing: border-box;
+}
+
+h1 {
+    color: black;
+}
+
+input {
+    margin: 2px;
+}
+button {
+    margin: 2px;
+}

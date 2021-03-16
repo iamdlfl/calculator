@@ -256,6 +256,7 @@ form.addEventListener('submit', (event) => {
     findAndReplace('gateValue', responseData.gates);
     findAndReplace('swingValue', responseData.swings);
     findAndReplace('angleValue', responseData.angles);
+    findAndReplace('message', 'Success! Check out our calculations below.');
 
     console.log(responseData);
 });

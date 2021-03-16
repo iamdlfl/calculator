@@ -2,13 +2,82 @@ body {
     box-sizing: border-box;
 }
 
+
 h1 {
     color: black;
+    text-align: center;
+}
+h2 {
+    color: green;
+    text-align: center;
 }
 
-input {
-    margin: 2px;
+label {
+    font-weight: bold;
 }
+
+
+
 button {
-    margin: 2px;
+    max-width: 200px;
+    background-color: #443845;
+    border: 1px black solid;
+    color: white;
+    border-radius: 5px;
+    min-height: 2rem;
 }
+
+.label {
+    font-weight: bold;
+}
+.form-div {
+    margin-bottom: 1rem;
+    display: flex;
+    justify-content: space-between;
+}
+
+#main {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+
+}
+
+#form {
+    margin: 1rem;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    flex-shrink: 0;
+    background-color: rgba(125, 25, 25, 0.2);
+    border: 1px solid grey;
+    border-radius: 5px;
+}
+
+
+#calculations {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    margin: 1rem;
+    border: 1px solid grey;
+    border-radius: 5px;
+    flex-grow: 1;
+    flex-shrink: 0;
+    background-color: rgba(25, 125, 25, 0.2);
+
+}
+
+#fittingLengths {
+    display: flex;
+    flex-direction: column;
+    margin: 1rem;
+    padding: 1rem;
+    border: 1px solid grey;
+    border-radius: 5px;
+    flex-grow: 1;
+    flex-shrink: 0;
+    background-color: rgba(25, 25, 125, 0.2);
+}
+

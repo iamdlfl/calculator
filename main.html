@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Friction Loss</title>
+</head>
+
+<body>
+    <style>
+        body {
+            box-sizing: border-box;
+        }
+    
+    
+        h1 {
+            color: black;
+            text-align: center;
+        }
+    
+        h2 {
+            color: green;
+            text-align: center;
+        }
+    
+        label {
+            font-weight: bold;
+        }
+    
+    
+    
+        button {
+            max-width: 200px;
+            background-color: #443845;
+            border: 1px black solid;
+            color: white;
+            border-radius: 5px;
+            min-height: 2rem;
+        }
+    
+        .label {
+            font-weight: bold;
+        }
+    
+        .form-div {
+            margin-bottom: 1rem;
+            display: flex;
+            justify-content: space-between;
+        }
+    
+        #main {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+    
+        }
+    
+        #form {
+            margin: 1rem;
+            padding: 1rem;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+            flex-shrink: 0;
+            background-color: rgba(125, 25, 25, 0.2);
+            border: 1px solid grey;
+            border-radius: 5px;
+        }
+    
+    
+        #calculations {
+            display: flex;
+            flex-direction: column;
+            padding: 1rem;
+            margin: 1rem;
+            border: 1px solid grey;
+            border-radius: 5px;
+            flex-grow: 1;
+            flex-shrink: 0;
+            background-color: rgba(25, 125, 25, 0.2);
+    
+        }
+    
+        #fittingLengths {
+            display: flex;
+            flex-direction: column;
+            margin: 1rem;
+            padding: 1rem;
+            border: 1px solid grey;
+            border-radius: 5px;
+            flex-grow: 1;
+            flex-shrink: 0;
+            background-color: rgba(25, 25, 125, 0.2);
+        }
+    </style>
+
+    <h1>Friction Loss Calculator</h1>
+
+    <h2 id="message"></h2>
+
+    <div id="main">
+
+        <form action="" id="form">
+            <h3>Please input dimensions and values below</h3>
+            <div class="form-div">
+                <label for="liquidType">Type of liquid: </label>
+                <input type="text" id="liquidType">
+            </div>
+            <div class="form-div">
+                <label for="gpm">GPM</label>
+                <input type="number" step="any" min="0" name="gpm" id="gpm" value="0">
+            </div>
+            <div class="form-div">
+                <label for="diameter">Diameter (inches)</label>
+                <input type="number" step="any" min="0" name="diameter" id="diameter" value="0">
+            </div>
+            <div class="form-div">
+                <label for="lengthInput">Length (feet)</label>
+                <input type="number" step="any" min="0" name="lengthInput" id="lengthInput" value="0">
+            </div>
+            <div class="form-div">
+                <label for="viscosity">Viscosity (cps)</label>
+                <input type="number" step="any" min="0" name="viscosity" id="viscosity" value="0">
+            </div>
+            <div class="form-div">
+                <label for="spgr">SP. GR.</label>
+                <input type="number" step="any" min="0" name="spgr" id="spgr" value="0">
+            </div>
+            <div class="form-div">
+                <label for="verticalRise">Vertical Rise (feet)</label>
+                <input type="number" step="any" name="verticalRise" id="verticalRise" value="0">
+            </div>
+            <h3>Please input quantity of desired fittings below</h3>
+            <div class="form-div">
+                <label for="nineties">Number of 90 degree ells</label>
+                <input type="number" step="any" name="nineties" id="nineties" value="0">
+            </div>
+            <div class="form-div">
+                <label for="fortyfives">Number of 45 degree ells</label>
+                <input type="number" step="any" name="fortyfives" id="fortyfives" value="0">
+            </div>
+            <div class="form-div">
+                <label for="teebranch">Number of Tee Branch Flows</label>
+                <input type="number" step="any" name="teebranch" id="teebranch" value="0">
+            </div>
+            <div class="form-div">
+                <label for="teeline">Number of Tee Line Flows</label>
+                <input type="number" step="any" name="teeline" id="teeline" value="0">
+            </div>
+            <div class="form-div">
+                <label for="globe">Number of Globe Valves</label>
+                <input type="number" step="any" name="globe" id="globe" value="0">
+            </div>
+            <div class="form-div">
+                <label for="gate">Number of Gate Valves</label>
+                <input type="number" step="any" name="gate" id="gate" value="0">
+            </div>
+            <div class="form-div">
+                <label for="swing">Number of Swing Check Valve</label>
+                <input type="number" step="any" name="swing" id="swing" value="0">
+            </div>
+            <div class="form-div">
+                <label for="angle">Number of Angle Valve</label>
+                <input type="number" step="any" name="angle" id="angle" value="0">
+            </div>
+            <button>Submit</button>
+        </form>
+
+        <div id="calculations">
+            <h3>Results of our calculations: </h3>
+            <p><span class="label" title="(f * L * V^2) / (2 * ID * Gc) + Vrise">Head Loss:</span> <span
+                    id="headLossValue">0</span> ft</p>
+            <p><span class="label" title="(Head Loss * SP. GR) / 2.31">Pressure Drop:</span> <span
+                    id="pressureDropValue">0</span> psig</p>
+            <p><span class="label" title="Equivalent length + length">Total Length:</span> <span
+                    id="totalLengthValue">0</span> ft</p>
+            <p><span class="label">Kinimatic Viscosity:</span> <span id="kinimaticViscosityValue">0</span>
+                ft<sup>2</sup> per second</p>
+            <p><span class="label">Internal Diameter:</span> <span id="diameterValue">0</span> ft</p>
+            <p><span class="label">Flow Area:</span> <span id="flowAreaValue">0</span> ft<sup>2</sup></p>
+            <p><span class="label">Flow Rate:</span> <span id="flowRateValue">0</span> cfs</p>
+            <p><span class="label">Velocity:</span> <span id="velocityValue">0</span> fps</p>
+            <p><span class="label">Shear Rate:</span> <span id="shearRateValue">0</span></p>
+            <p><span class="label" title="V * ID / v">Reynolds Number:</span> <span id="reynoldsNumberValue">0</span>
+            </p>
+            <p><span class="label">Roughness:</span> <span id="roughnessValue">0</span> ft</p>
+            <p><span class="label">Gc:</span> <span id="gcValue">0</span> ft per second<sup>2</sup></p>
+            <p><span class="label">Roughness / ID:</span> <span id="eodValue">0</span></p>
+            <p><span class="label">Friction Factor:</span> <span id="frictionFactorValue">0</span></p>
+        </div>
+
+        <div id="fittingLengths">
+            <h3>Equivalent lengths of our fittings: </h3>
+            <p># 90 Ell's: <span id="ninetiesValue">0</span></p>
+            <p># 45 Ell's: <span id="fortyfivesValue">0</span></p>
+            <p># Tee Branch Flow: <span id="teeBranchValue">0</span></p>
+            <p># Tee Line Flow: <span id="teeLineValue">0</span></p>
+            <p># Globe Valve: <span id="globeValue">0</span></p>
+            <p># Gate Valve: <span id="gateValue">0</span></p>
+            <p># Swing Check Valve: <span id="swingValue">0</span></p>
+            <p># Angle Valve: <span id="angleValue">0</span></p>
+        </div>
+    </div>
+
+
+    <script>
+        // Constants to use in calculations below
+        const ROUGHNESS = 0.000015; // ft
+        const GC = 32.17; // ft/sec**2
+        const FRICTIONFACTORKEY = 1.003;
+        // Coefficients (?) for calculating equivalent lengths
+        const NINETYELLS = 0.21;
+        const FORTYFIVEELLS = 0.105;
+        const TEEBRANCH = 1.14;
+        const TEELINE = 0.38;
+        const GLOBEVALVE = 6.5;
+        const GATEVALVE = 0.16;
+        const SWINGCHECK = 1.9;
+        const ANGLEVALVE = 2;
+
+        // Functions to use in calculating data
+
+        const significantFigHelper = function (value, precision) {
+            // Helper function to make returning data with sig figs
+            // I implemented this using however many sig figs were in the spreadsheet
+            // It is possible to change this to be based on the data clients input if needed
+            return parseFloat(Number.parseFloat(value).toPrecision(precision));
+        };
+        const fixedPointHelper = function (value, precision) {
+            // Helper function to make returning data with sig figs
+            // I implemented this using however many sig figs were in the spreadsheet
+            // It is possible to change this to be based on the data clients input if needed
+            return parseFloat(Number.parseFloat(value).toFixed(precision));
+        };
+        const findAndReplace = (targetID, replacementData) => {
+            const target = document.getElementById(targetID);
+            target.innerText = replacementData;
+        };
+
+        const calcDiameterInFeet = function (originalDiameter) {
+            // Returns in feet
+            let result = originalDiameter / 12;
+            return significantFigHelper(result, 4);
+        };
+
+        const calcKinimaticViscosity = function (viscosity, spgr) {
+            // Returns in ft**2 per second
+            let result = (0.00067197 * viscosity) / (62.37 * spgr);
+            return significantFigHelper(result, 8)
+        };
+
+        const calcFlowArea = function (diameterInFeet) {
+            // Returns in ft**2
+            let result = Math.atan(1) * 4 * ((diameterInFeet / 2) ** 2);
+            return significantFigHelper(result, 3)
+        };
+
+        const calcFlow = function (GPM) {
+            // Returns in cubic feet per second
+            let result = GPM * 0.002228;
+            return significantFigHelper(result, 4)
+        };
+
+        const calcVelocity = function (flow, flowArea) {
+            // Returns in fps
+            let result = flow / flowArea;
+            return significantFigHelper(result, 3)
+        };
+
+        const calcShearRate = function (GPM, diameterInInches) {
+            let x = (diameterInInches / 2) ** 3;
+            let result = (GPM / x) * 4.9;
+            return significantFigHelper(result, 5)
+        };
+
+        const calcReynoldsNumber = function (diameterInFeet, velocity, kinimaticViscosity) {
+            let result = (diameterInFeet * velocity) / kinimaticViscosity;
+            return significantFigHelper(result, 5)
+        };
+
+        const calcEOverDiameter = function (diameterInFeet) {
+            let result = ROUGHNESS / diameterInFeet;
+            return fixedPointHelper(result, 4);
+        };
+
+        const calcHeadLoss = function (frictionFactor, totalLength, velocity, diameterInFeet, verticalRise) {
+            // Returns in ft
+            let numerator = (frictionFactor * totalLength * (velocity ** 2));
+            let denominator = 2 * diameterInFeet * GC;
+            let result = (numerator / denominator) + verticalRise;
+            return fixedPointHelper(result, 2)
+        };
+
+        const calcPressureDrop = function (headLoss, spgr) {
+            // Returns in psig
+            let result = (headLoss / 2.31) * spgr;
+            return fixedPointHelper(result, 2)
+        };
+
+        const calcEquivalentLength = function (coefficientForPiece, diameterInFeet, frictionFactor, quantity) {
+            let result = coefficientForPiece * diameterInFeet / frictionFactor * quantity
+            return significantFigHelper(result, 4)
+        };
+
+        const calcDarcyValue = function (targetValue, diameterInFeet, reynoldsNumber) {
+            let sqrtOfVal = Math.sqrt(targetValue);
+            let endValue = 2.51 / (reynoldsNumber * sqrtOfVal);
+            let valueToGoInLOG = (ROUGHNESS / (3.7 * diameterInFeet)) + endValue;
+            let darcyValue = -2 * sqrtOfVal * Math.log10(valueToGoInLOG);
+            let result = darcyValue;
+            return significantFigHelper(result, 10)
+        };
+
+        const createDarcyChart = function (arrayOfValues, diameterInFeet, reynoldsNumber) {
+            // Creates an object and uses the "calcDarcyValue" function to populate the 
+            // Darcy Weisbach charts
+            const darcyChart = {};
+            for (let v of arrayOfValues) {
+                darcyChart[v] = calcDarcyValue(v, diameterInFeet, reynoldsNumber);
+            };
+            return darcyChart;
+        };
+
+        const findFrictionFactor = function (arrayOfValues, darcyChart, reynoldsNumber) {
+
+            if (reynoldsNumber < 2000) {
+                return significantFigHelper(64 / reynoldsNumber, 3);
+            } else {
+                // Initializing lastValue to the first value of the darcy chart will insure that
+                // this will always return an actual number.
+                let lastValue = 0.007;
+                // Iterating over the previously used array instead of keys of the chart 
+                // Because it is easier than trying to sort the keys of the chart
+                for (let v of arrayOfValues) {
+                    // Check each associated value of the darcy chart with the key
+                    // If it is over then the last value is used
+                    // This was essentially how the vertical lookup in the excel sheet worked
+                    if (darcyChart[v] > FRICTIONFACTORKEY) {
+                        return lastValue;
+                    } else {
+                        lastValue = v;
+                    }
+                }
+            }
+            // If something goes wrong above return a negative number, 
+            // which should lead to obviously wrong results. 
+            // May change this to just throw an error - will talk to Adam
+
+            return -1;
+        };
+
+        // The main function - this uses all of the above functions to collect calculations and data
+        // and combine them into a single object
+        const createData = function (GPM, diameterInInches, length, viscosity, spgr, verticalRise, nineties, fortyfives, teebranch, teeline, globe, gate, swing, angle) {
+            const data = {}
+
+            data.kinimaticViscosity = calcKinimaticViscosity(viscosity, spgr);
+            data.diameterInFeet = calcDiameterInFeet(diameterInInches);
+            data.flowArea = calcFlowArea(data.diameterInFeet);
+            data.flowRate = calcFlow(GPM);
+            data.velocity = calcVelocity(data.flowRate, data.flowArea);
+            data.shearRate = calcShearRate(GPM, diameterInInches);
+            data.EOverD = calcEOverDiameter(data.diameterInFeet);
+
+            data.reynoldsNumber = calcReynoldsNumber(
+                data.diameterInFeet,
+                data.velocity,
+                data.kinimaticViscosity
+            );
+            data.darcyChart = createDarcyChart(
+                arrayForDarcyValues,
+                data.diameterInFeet,
+                data.reynoldsNumber
+            );
+            data.frictionFactor = findFrictionFactor(
+                arrayForDarcyValues,
+                data.darcyChart,
+                data.reynoldsNumber
+            );
+
+            // Fitting lengths will need friction factor and diameter in feet
+
+            data.nineties = calcEquivalentLength(NINETYELLS, data.diameterInFeet, data.frictionFactor, nineties)
+            data.fortyfives = calcEquivalentLength(FORTYFIVEELLS, data.diameterInFeet, data.frictionFactor, fortyfives)
+            data.teebranches = calcEquivalentLength(TEEBRANCH, data.diameterInFeet, data.frictionFactor, teebranch)
+            data.teelines = calcEquivalentLength(TEELINE, data.diameterInFeet, data.frictionFactor, teeline)
+            data.globes = calcEquivalentLength(GLOBEVALVE, data.diameterInFeet, data.frictionFactor, globe)
+            data.gates = calcEquivalentLength(GATEVALVE, data.diameterInFeet, data.frictionFactor, gate)
+            data.swings = calcEquivalentLength(SWINGCHECK, data.diameterInFeet, data.frictionFactor, swing)
+            data.angles = calcEquivalentLength(ANGLEVALVE, data.diameterInFeet, data.frictionFactor, angle)
+
+            data.totalFittingLength = data.nineties + data.fortyfives + data.teebranches + data.teelines + data.globes + data.gates + data.swings + data.angles;
+
+            data.totalLength = fixedPointHelper(parseFloat(length) + data.totalFittingLength, 0);
+
+            // These two should be calculated last
+            data.headLoss = calcHeadLoss(
+                data.frictionFactor,
+                data.totalLength,
+                data.velocity,
+                data.diameterInFeet,
+                verticalRise
+            );
+            data.pressureDrop = calcPressureDrop(data.headLoss, spgr);
+
+            return data;
+        };
+
+        // Generate values from .007 to .0918 stepping one in the ten thousandths place (.0071, .0072 etc.)
+        // These were the values from the Darcy Weisbach chart in the spreadsheet
+        let numberToAppend = 0.007;
+        const arrayForDarcyValues = [];
+        while (numberToAppend < 0.0919) {
+            arrayForDarcyValues.push(parseFloat(significantFigHelper(numberToAppend, 3)));
+            numberToAppend += 0.0001;
+        };
+
+        // Set up for submittal
+        const form = document.getElementById('form');
+
+        form.addEventListener('submit', (event) => {
+            // Prevent form from submitting normally, which would erase the numbers the client input
+            event.preventDefault();
+
+            // Create the object with data needed, will use to populate charts
+            const els = event.target.elements;
+            const responseData = createData(
+                parseFloat(els.gpm.value),
+                parseFloat(els.diameter.value),
+                parseFloat(els.lengthInput.value),
+                parseFloat(els.viscosity.value),
+                parseFloat(els.spgr.value),
+                parseFloat(els.verticalRise.value),
+                parseFloat(els.nineties.value),
+                parseFloat(els.fortyfives.value),
+                parseFloat(els.teebranch.value),
+                parseFloat(els.teeline.value),
+                parseFloat(els.globe.value),
+                parseFloat(els.gate.value),
+                parseFloat(els.swing.value),
+                parseFloat(els.angle.value)
+            );
+            findAndReplace('headLossValue', responseData.headLoss);
+            findAndReplace('pressureDropValue', responseData.pressureDrop);
+            findAndReplace('totalLengthValue', responseData.totalLength);
+            findAndReplace('kinimaticViscosityValue', responseData.kinimaticViscosity);
+            findAndReplace('diameterValue', responseData.diameterInFeet);
+            findAndReplace('flowAreaValue', responseData.flowArea);
+            findAndReplace('flowRateValue', responseData.flowRate);
+            findAndReplace('velocityValue', responseData.velocity);
+            findAndReplace('shearRateValue', responseData.shearRate);
+            findAndReplace('reynoldsNumberValue', responseData.reynoldsNumber);
+            findAndReplace('roughnessValue', ROUGHNESS);
+            findAndReplace('gcValue', GC);
+            findAndReplace('eodValue', responseData.EOverD);
+            findAndReplace('frictionFactorValue', responseData.frictionFactor);
+            findAndReplace('ninetiesValue', responseData.nineties);
+            findAndReplace('fortyfivesValue', responseData.fortyfives);
+            findAndReplace('teeBranchValue', responseData.teebranches);
+            findAndReplace('teeLineValue', responseData.teelines);
+            findAndReplace('globeValue', responseData.globes);
+            findAndReplace('gateValue', responseData.gates);
+            findAndReplace('swingValue', responseData.swings);
+            findAndReplace('angleValue', responseData.angles);
+            findAndReplace('message', 'Success! Check out our calculations below.');
+
+            console.log(responseData);
+        });
+    </script>
+
+</body>
+
+</html>

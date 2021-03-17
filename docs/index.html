@@ -14,97 +14,101 @@
 
     <div id="main">
 
-    <form action="" id="form">
-        <h3>Please input dimensions and values below</h3>
-        <div class="form-div">
-            <label for="gpm">GPM</label>
-            <input type="number" step="any" min="0" name="gpm" id="gpm" value="0">
-        </div>
-        <div class="form-div">
-            <label for="diameter">Diameter (inches)</label>
-            <input type="number" step="any" min="0" name="diameter" id="diameter" value="0">
-        </div>
-        <div class="form-div">
-            <label for="lengthInput">Length (feet)</label>
-            <input type="number" step="any" min="0" name="lengthInput" id="lengthInput" value="0">
-        </div>
-        <div class="form-div">
-            <label for="viscosity">Viscosity (cps)</label>
-            <input type="number" step="any" min="0" name="viscosity" id="viscosity" value="0">
-        </div>
-        <div class="form-div">
-            <label for="spgr">SP. GR.</label>
-            <input type="number" step="any" min="0" name="spgr" id="spgr" value="0">
-        </div>
-        <div class="form-div">
-            <label for="verticalRise">Vertical Rise (feet)</label>
-            <input type="number" step="any" name="verticalRise" id="verticalRise" value="0">
-        </div>
-        <h3>Please input quantity of desired fittings below</h3>
-        <div class="form-div">
-            <label for="nineties">Number of 90 degree ells</label>
-            <input type="number" step="any" name="nineties" id="nineties" value="0">
-        </div>
-        <div class="form-div">
-            <label for="fortyfives">Number of 45 degree ells</label>
-            <input type="number" step="any"  name="fortyfives" id="fortyfives" value="0">
-        </div>
-        <div class="form-div">
-            <label for="teebranch">Number of Tee Branch Flows</label>
-            <input type="number" step="any"  name="teebranch" id="teebranch" value="0">
-        </div>
-        <div class="form-div">
-            <label for="teeline">Number of Tee Line Flows</label>
-            <input type="number" step="any" name="teeline" id="teeline" value="0">
-        </div>
-        <div class="form-div">
-            <label for="globe">Number of Globe Valves</label>
-            <input type="number" step="any" name="globe" id="globe" value="0">
-        </div>
-        <div class="form-div">
-            <label for="gate">Number of Gate Valves</label>
-            <input type="number" step="any" name="gate" id="gate" value="0">
-        </div>
-        <div class="form-div">
-            <label for="swing">Number of Swing Check Valve</label>
-            <input type="number" step="any" name="swing" id="swing" value="0">
-        </div>
-        <div class="form-div">
-            <label for="angle">Number of Angle Valve</label>
-            <input type="number" step="any" name="angle" id="angle" value="0">
+        <form action="" id="form">
+            <h3>Please input dimensions and values below</h3>
+            <div class="form-div">
+                <label for="liquidType">Type of liquid: </label>
+                <input type="text" id="liquidType">
+            </div>
+            <div class="form-div">
+                <label for="gpm">GPM</label>
+                <input type="number" step="any" min="0" name="gpm" id="gpm" value="0">
+            </div>
+            <div class="form-div">
+                <label for="diameter">Diameter (inches)</label>
+                <input type="number" step="any" min="0" name="diameter" id="diameter" value="0">
+            </div>
+            <div class="form-div">
+                <label for="lengthInput">Length (feet)</label>
+                <input type="number" step="any" min="0" name="lengthInput" id="lengthInput" value="0">
+            </div>
+            <div class="form-div">
+                <label for="viscosity">Viscosity (cps)</label>
+                <input type="number" step="any" min="0" name="viscosity" id="viscosity" value="0">
+            </div>
+            <div class="form-div">
+                <label for="spgr">SP. GR.</label>
+                <input type="number" step="any" min="0" name="spgr" id="spgr" value="0">
+            </div>
+            <div class="form-div">
+                <label for="verticalRise">Vertical Rise (feet)</label>
+                <input type="number" step="any" name="verticalRise" id="verticalRise" value="0">
+            </div>
+            <h3>Please input quantity of desired fittings below</h3>
+            <div class="form-div">
+                <label for="nineties">Number of 90 degree ells</label>
+                <input type="number" step="any" name="nineties" id="nineties" value="0">
+            </div>
+            <div class="form-div">
+                <label for="fortyfives">Number of 45 degree ells</label>
+                <input type="number" step="any"  name="fortyfives" id="fortyfives" value="0">
+            </div>
+            <div class="form-div">
+                <label for="teebranch">Number of Tee Branch Flows</label>
+                <input type="number" step="any"  name="teebranch" id="teebranch" value="0">
+            </div>
+            <div class="form-div">
+                <label for="teeline">Number of Tee Line Flows</label>
+                <input type="number" step="any" name="teeline" id="teeline" value="0">
+            </div>
+            <div class="form-div">
+                <label for="globe">Number of Globe Valves</label>
+                <input type="number" step="any" name="globe" id="globe" value="0">
+            </div>
+            <div class="form-div">
+                <label for="gate">Number of Gate Valves</label>
+                <input type="number" step="any" name="gate" id="gate" value="0">
+            </div>
+            <div class="form-div">
+                <label for="swing">Number of Swing Check Valve</label>
+                <input type="number" step="any" name="swing" id="swing" value="0">
+            </div>
+            <div class="form-div">
+                <label for="angle">Number of Angle Valve</label>
+                <input type="number" step="any" name="angle" id="angle" value="0">
+            </div>
+            <button>Submit</button>
+        </form>
+
+        <div id="calculations">
+            <h3>Results of our calculations: </h3>
+            <p><span class="label" title="(f * L * V^2) / (2 * ID * Gc) + Vrise">Head Loss:</span> <span id="headLossValue">0</span> ft</p>
+            <p><span class="label" title="(Head Loss * SP. GR) / 2.31">Pressure Drop:</span> <span id="pressureDropValue">0</span> psig</p>
+            <p><span class="label" title="Equivalent length + length">Total Length:</span> <span id="totalLengthValue">0</span> ft</p>
+            <p><span class="label">Kinimatic Viscosity:</span> <span id="kinimaticViscosityValue">0</span> ft<sup>2</sup> per second</p>
+            <p><span class="label">Internal Diameter:</span> <span id="diameterValue">0</span> ft</p>
+            <p><span class="label">Flow Area:</span> <span id="flowAreaValue">0</span> ft<sup>2</sup></p>
+            <p><span class="label">Flow Rate:</span> <span id="flowRateValue">0</span> cfs</p>
+            <p><span class="label">Velocity:</span> <span id="velocityValue">0</span> fps</p>
+            <p><span class="label">Shear Rate:</span> <span id="shearRateValue">0</span></p>
+            <p><span class="label" title="V * ID / v">Reynolds Number:</span> <span id="reynoldsNumberValue">0</span></p>
+            <p><span class="label">Roughness:</span> <span id="roughnessValue">0</span> ft</p>
+            <p><span class="label">Gc:</span> <span id="gcValue">0</span> ft per second<sup>2</sup></p>
+            <p><span class="label">Roughness / ID:</span> <span id="eodValue">0</span></p>
+            <p><span class="label">Friction Factor:</span> <span id="frictionFactorValue">0</span></p>
         </div>
 
-        <button>Submit</button>
-    </form>
-
-    <div id="calculations">
-        <h3>Results of our calculations: </h3>
-        <p><span class="label">Head Loss:</span> <span id="headLossValue">0</span> ft</p>
-        <p><span class="label">Pressure Drop:</span> <span id="pressureDropValue">0</span> psig</p>
-        <p><span class="label">Total Length:</span> <span id="totalLengthValue">0</span> ft</p>
-        <p><span class="label">Kinimatic Viscosity:</span> <span id="kinimaticViscosityValue">0</span> ft<sup>2</sup> per second</p>
-        <p><span class="label">Internal Diameter:</span> <span id="diameterValue">0</span> ft</p>
-        <p><span class="label">Flow Area:</span> <span id="flowAreaValue">0</span> ft<sup>2</sup></p>
-        <p><span class="label">Flow Rate:</span> <span id="flowRateValue">0</span> cfs</p>
-        <p><span class="label">Velocity:</span> <span id="velocityValue">0</span> fps</p>
-        <p><span class="label">Shear Rate:</span> <span id="shearRateValue">0</span></p>
-        <p><span class="label">Reynolds Number:</span> <span id="reynoldsNumberValue">0</span></p>
-        <p><span class="label">Roughness:</span> <span id="roughnessValue">0</span> ft</p>
-        <p><span class="label">Gc:</span> <span id="gcValue">0</span> ft per second<sup>2</sup></p>
-        <p><span class="label">Roughness / ID:</span> <span id="eodValue">0</span></p>
-        <p><span class="label">Friction Factor:</span> <span id="frictionFactorValue">0</span></p>
-    </div>
-    <div id="fittingLengths">
-        <h3>Equivalent lengths of our fittings: </h3>
-        <p># 90 Ell's: <span id="ninetiesValue">0</span></p>
-        <p># 45 Ell's: <span id="fortyfivesValue">0</span></p>
-        <p># Tee Branch Flow: <span id="teeBranchValue">0</span></p>
-        <p># Tee Line Flow: <span id="teeLineValue">0</span></p>
-        <p># Globe Valve: <span id="globeValue">0</span></p>
-        <p># Gate Valve: <span id="gateValue">0</span></p>
-        <p># Swing Check Valve: <span id="swingValue">0</span></p>
-        <p># Angle Valve: <span id="angleValue">0</span></p>
-    </div>
+        <div id="fittingLengths">
+            <h3>Equivalent lengths of our fittings: </h3>
+            <p># 90 Ell's: <span id="ninetiesValue">0</span></p>
+            <p># 45 Ell's: <span id="fortyfivesValue">0</span></p>
+            <p># Tee Branch Flow: <span id="teeBranchValue">0</span></p>
+            <p># Tee Line Flow: <span id="teeLineValue">0</span></p>
+            <p># Globe Valve: <span id="globeValue">0</span></p>
+            <p># Gate Valve: <span id="gateValue">0</span></p>
+            <p># Swing Check Valve: <span id="swingValue">0</span></p>
+            <p># Angle Valve: <span id="angleValue">0</span></p>
+        </div>
     </div>
 
 

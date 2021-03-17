@@ -82,13 +82,13 @@ const calcHeadLoss = function(frictionFactor, totalLength, velocity, diameterInF
     let numerator = (frictionFactor * totalLength * (velocity**2));
     let denominator = 2 * diameterInFeet * GC;
     let result = (numerator/denominator) + verticalRise;
-    return significantFigHelper(result, 3)
+    return fixedPointHelper(result, 2)
 };
 
 const calcPressureDrop = function(headLoss, spgr) {
     // Returns in psig
     let result = (headLoss/2.31) * spgr;
-    return significantFigHelper(result, 3)
+    return fixedPointHelper(result, 2)
 };
 
 const calcEquivalentLength = function(coefficientForPiece, diameterInFeet, frictionFactor, quantity) {

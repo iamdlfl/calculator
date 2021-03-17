@@ -69,7 +69,7 @@ const calcShearRate = function(GPM, diameterInInches){
 
 const calcReynoldsNumber = function(diameterInFeet, velocity, kinimaticViscosity) {
     let result = (diameterInFeet*velocity)/kinimaticViscosity;
-    return significantFigHelper(result, 4)
+    return significantFigHelper(result, 5)
 };
 
 const calcEOverDiameter = function(diameterInFeet) {
@@ -82,13 +82,13 @@ const calcHeadLoss = function(frictionFactor, totalLength, velocity, diameterInF
     let numerator = (frictionFactor * totalLength * (velocity**2));
     let denominator = 2 * diameterInFeet * GC;
     let result = (numerator/denominator) + verticalRise;
-    return significantFigHelper(result, 2)
+    return significantFigHelper(result, 3)
 };
 
 const calcPressureDrop = function(headLoss, spgr) {
     // Returns in psig
     let result = (headLoss/2.31) * spgr;
-    return significantFigHelper(result, 2)
+    return significantFigHelper(result, 3)
 };
 
 const calcEquivalentLength = function(coefficientForPiece, diameterInFeet, frictionFactor, quantity) {

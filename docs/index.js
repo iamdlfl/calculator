@@ -68,7 +68,7 @@ const calcShearRate = function(GPM, diameterInInches){
 };
 
 const calcReynoldsNumber = function(diameterInFeet, velocity, kinimaticViscosity) {
-    let result = (diameterInFeet*velocity)/kinimaticViscosity;
+    let result = diameterInFeet*velocity/kinimaticViscosity;
     return significantFigHelper(result, 5)
 };
 

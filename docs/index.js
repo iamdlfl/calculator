@@ -34,7 +34,7 @@ const findAndReplace = (targetID, replacementData) => {
 const calcDiameterInFeet = function(originalDiameter) {
     // Returns in feet
     let result = originalDiameter/12;
-    return significantFigHelper(result, 4);
+    return significantFigHelper(result, 5);
 };
 
 const calcKinimaticViscosity = function(viscosity, spgr) {
@@ -58,7 +58,7 @@ const calcFlow = function(GPM) {
 const calcVelocity = function(flow, flowArea) {
     // Returns in fps
     let result = flow/flowArea;
-    return significantFigHelper(result, 3)
+    return significantFigHelper(result, 4)
 };
 
 const calcShearRate = function(GPM, diameterInInches){
@@ -69,7 +69,7 @@ const calcShearRate = function(GPM, diameterInInches){
 
 const calcReynoldsNumber = function(diameterInFeet, velocity, kinimaticViscosity) {
     let result = diameterInFeet*velocity/kinimaticViscosity;
-    return significantFigHelper(result, 5)
+    return significantFigHelper(result, 6)
 };
 
 const calcEOverDiameter = function(diameterInFeet) {
